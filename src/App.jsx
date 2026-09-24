@@ -80,13 +80,24 @@ export default function App() {
         <div className="gift-screen">
           <div className="gift-card fade-in">
             <span className="badge">Special Delivery For You</span>
+            
+            {/* Custom 3D Cat with Flower Image */}
+            <div className="hero-cat-container">
+              <img 
+                src="/images/image.png" 
+                alt="Cute Cat with Flower" 
+                className="hero-cat-img" 
+              />
+            </div>
+
             <h1 className="title-lg">HI PRANATHI! ✨</h1>
-            <p className="subtitle">I gathered some of our favorite moments in one place. Tap below to open it up!</p>
+            <p className="subtitle">I built this little corner of the internet just for you—a quiet space to hold every smile, every memory, and every reason why you mean the world to me. Tap below to open it up!</p>
+            
             <div onClick={handleOpenGift} className="gift-box-wrapper">
               <div className="gift-box-glow"></div>
               <div className="gift-box-content">
                 <Gift className="gift-icon" size={64} />
-                <span className="gift-btn-text">Tap to See Our Memories</span>
+                <span className="gift-btn-text">Tap to See Your Memories</span>
               </div>
             </div>
           </div>
@@ -109,7 +120,7 @@ export default function App() {
             {activeTab === 'home' && (
               <div className="card-container text-center">
                 <h1 className="title-xl">To My Absolute Favorite Person 💖</h1>
-                <p className="body-text">Out of all the pages on the web, this one is my favorite because it's all about you. Wander through your memories and reasons, but make sure you don't skip the very last question! 😉❤️</p>
+                <p className="body-text">I built this little corner of the internet just for you—a quiet space to hold every smile, every memory, and every reason why you mean the world to me. Navigate using the tabs above to explore our reasons, memories, and a special question at the end.</p>
                 <button onClick={() => setActiveTab('proposal')} className="primary-btn mt-4">Go To Final Question ✨</button>
               </div>
             )}
