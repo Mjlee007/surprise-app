@@ -45,7 +45,7 @@ export default function App() {
   // 📸 Linked directly to your local images folder structure!
   const memories = [
     { title: "Angry Bird !", date: "Special Moment #1", bg: "url('/images/P1.jpeg')", desc: "One of those expressions that always makes me smile instantly." },
-    { title: "Beautiful Memory", date: "Special Moment #2", bg: "url('/images/P2.jpeg')", desc: "A gorgeous capture of a wonderful moment together." },
+    { title: "Beautiful Memory", date: "Special Moment #2", bg: "url('/images/P2.jpeg')", desc: "A gorgeous capture of a wonderful moment ." },
     { title: "Unforgettable Time", date: "Special Moment #3", bg: "url('/images/P3.jpeg')", desc: "Times like these are treasures I hold close to my heart." },
     { title: "Sweet Smiles", date: "Special Moment #4", bg: "url('/images/P4.jpeg')", desc: "Your smile has the power to brighten up any gloomy day." },
     { title: "Magical Selfie", date: "Special Moment #5", bg: "url('/images/P5.jpeg')", desc: "Simply stunning. Definitely one of my favorite pictures of you." },
@@ -91,7 +91,7 @@ export default function App() {
             </div>
 
             <h1 className="title-lg">HI PRANATHI! ✨</h1>
-            <p className="subtitle">I built this little corner of the internet just for you—a quiet space to hold every smile, every memory, and every reason why you mean the world to me. Tap below to open it up!</p>
+            <p className="subtitle">Out of all the pages on the web, this one is my favorite because it's all about you. Wander through your memories and reasons, but make sure you don't skip the very last question! 😉❤️</p>
             
             <div onClick={handleOpenGift} className="gift-box-wrapper">
               <div className="gift-box-glow"></div>
