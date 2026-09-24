@@ -16,6 +16,9 @@ export default function App() {
   const [currentReason, setCurrentReason] = useState(0);
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   
+  // State for image lightbox popup
+  const [selectedMemory, setSelectedMemory] = useState(null);
+  
   // States for runaway "No" button position
   const [noPosition, setNoPosition] = useState({ x: 0, y: 0 });
   const [noCount, setNoCount] = useState(0);
@@ -41,16 +44,16 @@ export default function App() {
 
   // 📸 Linked directly to your local images folder structure!
   const memories = [
-    { title: "Angry Bird !", date: "Special Moment #1", bg: "url('/images/P1.jpeg')" },
-    { title: "Beautiful Memory", date: "Special Moment #2", bg: "url('/images/P2.jpeg')" },
-    { title: "Unforgettable Time", date: "Special Moment #3", bg: "url('/images/P3.jpeg')" },
-    { title: "Sweet Smiles", date: "Special Moment #4", bg: "url('/images/P4.jpeg')" },
-    { title: "Magical Selfie", date: "Special Moment #5", bg: "url('/images/P5.jpeg')" },
-    { title: "Natural Meditation ", date: "Special Moment #6", bg: "url('/images/P6.jpeg')" },
-    { title: "Pure Happiness", date: "Special Moment #7", bg: "url('/images/P7.jpeg')" },
-    { title: "Our Adventure", date: "Special Moment #8", bg: "url('/images/P8.jpeg')" },
-    { title: "Endless Joy", date: "Special Moment #9", bg: "url('/images/P9.jpeg')" },
-    { title: "Traditional", date: "Special Moment #10", bg: "url('/images/P10.jpeg')" },
+    { title: "Angry Bird !", date: "Special Moment #1", bg: "url('/images/P1.jpeg')", desc: "One of those expressions that always makes me smile instantly." },
+    { title: "Beautiful Memory", date: "Special Moment #2", bg: "url('/images/P2.jpeg')", desc: "A gorgeous capture of a wonderful moment together." },
+    { title: "Unforgettable Time", date: "Special Moment #3", bg: "url('/images/P3.jpeg')", desc: "Times like these are treasures I hold close to my heart." },
+    { title: "Sweet Smiles", date: "Special Moment #4", bg: "url('/images/P4.jpeg')", desc: "Your smile has the power to brighten up any gloomy day." },
+    { title: "Magical Selfie", date: "Special Moment #5", bg: "url('/images/P5.jpeg')", desc: "Simply stunning. Definitely one of my favorite pictures of you." },
+    { title: "Natural Meditation", date: "Special Moment #6", bg: "url('/images/P6.jpeg')", desc: "Peaceful, serene, and absolutely lovely." },
+    { title: "Pure Happiness", date: "Special Moment #7", bg: "url('/images/P7.jpeg')", desc: "Looking at you happy is all I ever want." },
+    { title: "Our Adventure", date: "Special Moment #8", bg: "url('/images/P8.jpeg')", desc: "Every adventure with you feels like a journey worth taking." },
+    { title: "Endless Joy", date: "Special Moment #9", bg: "url('/images/P9.jpeg')", desc: "Bringing so much joy and laughter into my everyday life." },
+    { title: "Traditional", date: "Special Moment #10", bg: "url('/images/P10.jpeg')", desc: "Looking breathtaking in traditional attire!" },
   ];
 
   const moveNoButton = () => {
@@ -72,10 +75,6 @@ export default function App() {
           <div key={i} className="floating-heart" style={{ top: `${Math.random() * 100}%`, left: `${Math.random() * 100}%`, animationDelay: `${Math.random() * 3}s`, animationDuration: `${Math.random() * 3 + 2}s` }}></div>
         ))}
       </div>
-
-      {/* <button onClick={toggleMusic} className="music-toggle-btn" title="Toggle Ambient Vibe">
-        {isPlayingMusic ? <Music className="animate-bounce" size={20} /> : <VolumeX size={20} />}
-      </button> */}
 
       {!isOpen ? (
         <div className="gift-screen">
@@ -132,6 +131,7 @@ export default function App() {
             {activeTab === 'memories' && (
               <div className="gallery-section fade-in">
                 <h2 className="section-title" style={{ marginBottom: 0 }}>Our Special Moments</h2>
+                <p style={{ textAlign: 'center', fontSize: '0.85rem', color: '#64748b', marginBottom: '1rem' }}>Click any card to view closer ✨</p>
                 <Swiper
                   effect={'coverflow'}
                   grabCursor={true}
@@ -146,7 +146,11 @@ export default function App() {
                   className="mySwiper"
                 >
                   {memories.map((mem, idx) => (
-                    <SwiperSlide key={idx} style={{ backgroundImage: mem.bg }}>
+                    <SwiperSlide 
+                      key={idx} 
+                      style={{ backgroundImage: mem.bg, cursor: 'pointer' }}
+                      onClick={() => setSelectedMemory(mem)}
+                    >
                       <div className="slide-content">
                         <h3 className="slide-title">{mem.title}</h3>
                         <p className="slide-date">{mem.date}</p>
@@ -203,6 +207,28 @@ export default function App() {
               </div>
             )}
           </main>
+        </div>
+      )}
+
+      {/* Lightbox Modal for Memories */}
+      {selectedMemory && (
+        <div className="lightbox-overlay" onClick={() => setSelectedMemory(null)}>
+          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <button className="lightbox-close-btn" onClick={() => setSelectedMemory(null)}>✕</button>
+            <div 
+              className="lightbox-image" 
+              style={{ 
+                backgroundImage: selectedMemory.bg, 
+                backgroundSize: 'cover', 
+                backgroundPosition: 'center', 
+                height: '320px', 
+                width: '100%' 
+              }}
+            ></div>
+            <h3 className="lightbox-title">{selectedMemory.title}</h3>
+            <p className="lightbox-date">{selectedMemory.date}</p>
+            <p className="lightbox-desc">{selectedMemory.desc}</p>
+          </div>
         </div>
       )}
     </div>
