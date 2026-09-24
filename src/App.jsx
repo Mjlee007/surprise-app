@@ -109,7 +109,7 @@ export default function App() {
             {activeTab === 'home' && (
               <div className="card-container text-center">
                 <h1 className="title-xl">To My Absolute Favorite Person 💖</h1>
-                <p className="body-text">I built this little corner of the internet just for you. Navigate using the tabs above to explore our reasons, memories, and a special question at the end.</p>
+                <p className="body-text">Out of all the pages on the web, this one is my favorite because it's all about you. Wander through your memories and reasons, but make sure you don't skip the very last question! 😉❤️</p>
                 <button onClick={() => setActiveTab('proposal')} className="primary-btn mt-4">Go To Final Question ✨</button>
               </div>
             )}
